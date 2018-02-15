@@ -69,29 +69,31 @@ int pollButtons() {
 }
 
 void communicateButtons(int pressed) {
+  Gamepad.releaseAll();
+  
   if (pressed & A) {
-    Gamepad.press(0);
-  }
-  if (pressed & B) {
     Gamepad.press(1);
   }
-  if (pressed & X) {
+  if (pressed & B) {
     Gamepad.press(2);
   }
-  if (pressed & Y) {
+  if (pressed & X) {
     Gamepad.press(3);
   }
-  if (pressed & L) {
+  if (pressed & Y) {
     Gamepad.press(4);
   }
-  if (pressed & R) {
+  if (pressed & L) {
     Gamepad.press(5);
   }
-  if (pressed & START) {
+  if (pressed & R) {
     Gamepad.press(6);
   }
-  if (pressed & SELECT) {
+  if (pressed & START) {
     Gamepad.press(7);
+  }
+  if (pressed & SELECT) {
+    Gamepad.press(8);
   }
 
   int padState = GAMEPAD_DPAD_CENTERED;
@@ -112,6 +114,12 @@ void communicateButtons(int pressed) {
     else if (pressed & DOWN) {
       padState = GAMEPAD_DPAD_DOWN_RIGHT;
     }
+  }
+  else if (pressed & UP) {
+    padState = GAMEPAD_DPAD_UP;
+  }
+  else if (pressed & DOWN) {
+    padState = GAMEPAD_DPAD_DOWN;
   }
 
   Gamepad.dPad1(padState);
