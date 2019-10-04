@@ -42,8 +42,9 @@ void loop() {
 }
 
 int pollButtons() {
+  delay(16.46);  // The sleeps below take 0.21 ms, so this delay gives us a total duration of 16.67ms -> 60Hz
   int pressed = 0;
-
+  
   digitalWrite(LTC, HIGH);
   delayMicroseconds(12);
   digitalWrite(LTC, LOW);
@@ -64,7 +65,6 @@ int pollButtons() {
     delayMicroseconds(6);
   }
 
-  delay(16.46);  // The sleeps above take 0.21 ms, so this delay gives us a total duration of 16.67ms -> 60Hz
   return pressed;
 }
 
@@ -120,10 +120,10 @@ void communicateButtons(int pressed) {
   }
   else if (pressed & DOWN) {
     padState = GAMEPAD_DPAD_DOWN;
-  }
+  }    
 
   Gamepad.dPad1(padState);
+  Gamepad.dPad2(padState);
 
   Gamepad.write();
 }
-
